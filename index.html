@@ -18,7 +18,7 @@
       text-align: center;
     }
     header img {
-      max-height: 100px;
+      max-height: 200px;
     }
     .hero {
       background: #ffcc00;
@@ -76,6 +76,42 @@
     table tr:nth-child(even) {
       background-color: #f2f2f2;
     }
+    .product-image-modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.8);
+    }
+    .product-image-content {
+      background-color: #fff;
+      margin: 10% auto;
+      padding: 20px;
+      width: 80%;
+      max-width: 600px;
+      text-align: center;
+      border-radius: 8px;
+    }
+    .product-image-content img {
+      max-width: 100%;
+      height: auto;
+    }
+    .product-image-content p {
+      font-size: 0.85em;
+      color: #555;
+      margin-top: 10px;
+    }
+    .close-modal {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
     footer {
       background-color: #003366;
       color: white;
@@ -89,7 +125,25 @@
     a:hover {
       text-decoration: underline;
     }
+    .ver-producto-btn {
+      background-color: #003366;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      cursor: pointer;
+      border-radius: 4px;
+      font-size: 0.85em;
+    }
   </style>
+  <script>
+    function openModal(imageSrc) {
+      document.getElementById("modalImage").src = imageSrc;
+      document.getElementById("imageModal").style.display = "block";
+    }
+    function closeModal() {
+      document.getElementById("imageModal").style.display = "none";
+    }
+  </script>
 </head>
 <body>
   <header>
@@ -98,29 +152,29 @@
   <div class="hero">Calidad que impulsa la industria</div>
 
   <section class="section" id="presentacion">
-  <h2>¿Quiénes Somos?</h2>
-  <p>Comercializadora BOON BTM comenzó sus operaciones en mayo del 2023 con la distribución de pintura en polvo. En conjunto con su principal socio comercial <strong>JINHU COLOR POWDER (FEIHONG)</strong> buscan penetrar el mercado mexicano con productos de alta calidad. BOON BTM opera como distribuidor exclusivo para México y Centroamérica.</p>
-  <p>JINHU COLOR POWDER es un fabricante de pintura en polvo en China que cuenta con más de 30 años de experiencia en la fabricación de Pintura en Polvo con 11 patentes. Además de ser uno de los líderes en la fabricación de pintura en polvo en China, están comprometidos con sus clientes y socios comerciales.</p>
-  <p>Por ende, cuentan con las certificaciones <strong>ISO 9001:2015</strong>, <strong>ISO 14001:2015</strong> y <strong>QUALICOAT</strong>  , que respaldan su compromiso con la calidad y el medio ambiente.</p>
-</section>
+    <h2>¿Quiénes Somos?</h2>
+    <p>Comercializadora BOON BTM comenzó sus operaciones en mayo del 2023 con la distribución de pintura en polvo. En conjunto con su principal socio comercial <strong>JINHU COLOR POWDER (FEIHONG)</strong> buscan penetrar el mercado mexicano con productos de alta calidad. BOON BTM opera como distribuidor exclusivo para México y Centroamérica.</p>
+    <p>JINHU COLOR POWDER es un fabricante de pintura en polvo en China que cuenta con más de 30 años de experiencia en la fabricación de Pintura en Polvo con 11 patentes. Además de ser uno de los líderes en la fabricación de pintura en polvo en China, están comprometidos con sus clientes y socios comerciales.</p>
+    <p>Por ende, cuentan con las certificaciones <strong>ISO 9001:2015</strong>, <strong>ISO 14001:2015</strong> y <strong>QUALICOAT</strong>, que respaldan su compromiso con la calidad y el medio ambiente.</p>
+  </section>
 
-<section class="section" id="jinhu-video">
-  <h2>Conoce más sobre JINHU</h2>
-  <p>Descubre el compromiso, la tecnología y la experiencia de nuestro socio estratégico en el mundo de la pintura en polvo.</p>
-  <div style="text-align: center; margin-top: 20px;">
-    <iframe 
-      src="https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2F100069883789434%2Fvideos%2F929046675388255%2F&show_text=false&width=560&t=0" 
-      width="700" 
-      height="500" 
-      style="border:none;overflow:hidden" 
-      scrolling="no" 
-      frameborder="0" 
-      allowfullscreen="true" 
-      allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
-    </iframe>
-  </div>
-</section>
-  
+    <section class="section" id="jinhu-video">
+    <h2>Conoce más sobre JINHU</h2>
+    <p>Descubre el compromiso, la tecnología y la experiencia de nuestro socio estratégico en el mundo de la pintura en polvo.</p>
+    <div style="text-align: center; margin-top: 20px;">
+      <iframe 
+        src="https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2F100069883789434%2Fvideos%2F929046675388255%2F&show_text=false&width=560&t=0" 
+        width="700" 
+        height="500" 
+        style="border:none;overflow:hidden" 
+        scrolling="no" 
+        frameborder="0" 
+        allowfullscreen="true" 
+        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+      </iframe>
+    </div>
+  </section>
+
   <section class="section" id="servicios">
     <h2>Servicios</h2>
     <ul>
@@ -154,77 +208,75 @@
   </section>
 
   <section class="section" id="productos">
-  <h2>Productos</h2>
-  <div class="table-wrapper">
-    <table>
-      <thead><tr><th>Código</th><th>RAL</th><th>Descripción</th></tr></thead>
-      <tbody>
-        <tr><td>E9005MA</td><td>9005</td><td>RAL9005 Smooth Matt (gloss30 - 44%) EP</td></tr>
-<tr><td>PH97910</td><td></td><td>White Color Smooth Glossy 90 -96% PP</td></tr>
-<tr><td>EH27906</td><td>2009</td><td>Orange Color Smooth Glossy 85%min EP</td></tr>
-<tr><td>PM87757</td><td>8019</td><td>RAL8019 Smooth Matt 35 - 53% PP</td></tr>
-<tr><td>PH97903</td><td>9003</td><td>RAL9003 Smooth Glossy 90 - 96% PP</td></tr>
-<tr><td>EH97903</td><td>9003</td><td>RAL9003 Smooth Glossy 85% min EP</td></tr>
-<tr><td>EN97743</td><td>9005</td><td>RAL9005 Smooth Matt 1 - 10% EP</td></tr>
-<tr><td>EH37904</td><td>3000</td><td>RAL3000 Smooth Glossy 85% min EP</td></tr>
-<tr><td>EH57905</td><td>5005</td><td>RAL5005 Smooth Glossy 85% min EP</td></tr>
-<tr><td>PRAL3002S8</td><td>3002</td><td>RAL3002 Smooth Glossy 90% min PP</td></tr>
-<tr><td>ERAL5011S8</td><td>5011</td><td>RAL5011 Smooth Glossy 80 - 90% EP</td></tr>
-<tr><td>PH97748</td><td>9017</td><td>RAL9017 Smooth Glossy 85% min PP</td></tr>
-<tr><td>PRAL7035S</td><td>7035</td><td>RAL7035 Smooth Semi Glossy(gloss 50 - 70%) PP</td></tr>
-<tr><td>PRAL1033SG</td><td>1033</td><td>RAL1033 Smooth Glossy 85% min PP</td></tr>
-<tr><td>ERAL1018SG</td><td>1018</td><td>RAL1018 Smooth Glossy 85% min EP</td></tr>
-<tr><td>ERAL1003SG</td><td>1003</td><td>RAL 1003 Smooth Glossy 90% min EP</td></tr>
-<tr><td>EN97751</td><td>9004</td><td>RAL9004 Smooth Matt (gloss 1 - 10 %)</td></tr>
-<tr><td>PPSBH-410</td><td></td><td>Silver Vein PP</td></tr>
-<tr><td>PHT30003</td><td></td><td>Transparent Red PP</td></tr>
-<tr><td>PP8004SG</td><td>8004</td><td>RAL 8004 Smooth Glossy PP</td></tr>
-<tr><td>FH8010</td><td></td><td>Transparent PP</td></tr>
-<tr><td>PP6019SG</td><td>6019</td><td>RAL 6019 Smooth Glossy PP</td></tr>
-<tr><td>PP1023SG</td><td>1023</td><td>RAL 1023 Smooth Glossy PP</td></tr>
-<tr><td>PNS26301</td><td></td><td>Black Sand Texture Anti 300 Degree High Heat PP</td></tr>
-<tr><td>EP8GY410405-1</td><td></td><td>Grey Hammertone PP</td></tr>
-<tr><td>H8AW0510</td><td></td><td>Chrome EP</td></tr>
-<tr><td>Clear 1007</td><td></td><td>Orange Transparent</td></tr>
-<tr><td>UPHG5000</td><td></td><td>Gold PP</td></tr>
-<tr><td>PPRAL9005SG</td><td></td><td>Jet Black 9005 PP</td></tr>
-<tr><td>PJ98814</td><td></td><td>Black Texture PP</td></tr>
-<tr><td>PPRAL3004SG</td><td>3004</td><td>RAL 3004 Smooth Glossy PP</td></tr>
-<tr><td>PHJB08337</td><td></td><td>Hammer Texture PP</td></tr>
-<tr><td>PN96954</td><td></td><td>White Matt PP</td></tr>
-<tr><td>PG-OW-0408</td><td></td><td>Black Texture PP</td></tr>
-<tr><td>PH68812</td><td></td><td>Green Smooth Glossy 80 - 90% PP</td></tr>
-<tr><td>PHT55363</td><td></td><td>Transparent Blue PP</td></tr>
-<tr><td>PHT25432</td><td></td><td>Transparent Black PP</td></tr>
-<tr><td>PHT25388</td><td></td><td>Transparent Brown PP</td></tr>
-<tr><td>PHT30004</td><td></td><td>Transparent Purple PP</td></tr>
-<tr><td>PHT66796</td><td></td><td>Transparent Green PP</td></tr>
-<tr><td>PHT61008</td><td></td><td>Transparent Green PP</td></tr>
-<tr><td>PG-8S-0413</td><td>8022</td><td>RAL8022 Smooth Semi Matt (gloss 35 - 53%) PP</td></tr>
-<tr><td>PHBB35306</td><td></td><td>Purple Wrinkle Vein PP</td></tr>
-<tr><td>PHJG61009</td><td></td><td>Green Wrinkle Vein PP</td></tr>
-<tr><td>824HFC-1</td><td></td><td>Copper Wrinkle Vein PP</td></tr>
-<tr><td>PPCBH424</td><td></td><td>Copper Wrinkle Vein PP</td></tr>
-<tr><td>PHJG55634</td><td></td><td>Blue Wrinkle Vein PP</td></tr>
-<tr><td>PP6018SG</td><td>6018</td><td>RAL6018 Smooth Glossy 90% min PP</td></tr>
-<tr><td>PRAL9016S8</td><td>9016</td><td>RAL9016 Smooth Glossy 90% min PP</td></tr>
-<tr><td>PG-3F-0462</td><td></td><td>Pink Smooth Glossy PP</td></tr>
-<tr><td>PP4006SG</td><td>4006</td><td>RAL4006 Smooth Glossy +85% PP</td></tr>
-<tr><td>PP4008SG</td><td>4008</td><td>RAL4008 Smooth Glossy +85% PP</td></tr>
-<tr><td>PP6026SG</td><td>6026</td><td>RAL6026 Smooth Glossy 90% min PP</td></tr>
-<tr><td>PP6029SG</td><td>6029</td><td>RAL6029 Smooth Glossy +85% PP</td></tr>
-<tr><td>PG-1B-0459</td><td></td><td>Arena PP</td></tr>
-<tr><td>PG-5B-0472</td><td></td><td>Blue Smooth Glossy PP</td></tr>
-<tr><td>PG-1T-0464-B</td><td></td><td>Chrome Gold PP</td></tr>
-<tr><td>PP7035SG</td><td>7035</td><td>RAL7035 Smooth Glossy +85% PP</td></tr>
-<tr><td>PG-7B-0456</td><td></td><td>Grey Smooth Glossy PP</td></tr>
-      </tbody>
-    </table>
-  </div>
-  <p style="font-size: 0.85em; color: #666; margin-top: 10px;">
-    Los productos mostrados actualmente se encuentran en stock. Esta lista no es limitativa; contamos con la capacidad de desarrollar productos personalizados según sus necesidades.
-  </p>
-</section>
+    <h2>Productos</h2>
+    <div class="table-wrapper">
+      <table>
+        <thead><tr><th>Código</th><th>RAL</th><th>Descripción</th><th>Ver producto</th></tr></thead>
+        <tbody>
+<tr><td>E9005MA</td><td>9005</td><td>RAL9005 Smooth Matt (gloss30 - 44%) EP</td><td><button class="ver-producto-btn" onclick="openModal('E9005MA.png')">Ver producto</button></td></tr>
+<tr><td>PH97910</td><td></td><td>PH97910 white color smooth glossy 90 -96% PP</td><td><button class="ver-producto-btn" onclick="openModal('PH97910.png')">Ver producto</button></td></tr>
+<tr><td>EH27906</td><td>2009</td><td>EH27906 orange color smooth glossy 85%min EP</td><td><button class="ver-producto-btn" onclick="openModal('EH27906.png')">Ver producto</button></td></tr>
+<tr><td>PM87757</td><td>8019</td><td>RAL8019 Smooth Matt 35 - 53% PP</td><td><button class="ver-producto-btn" onclick="openModal('PM87757.png')">Ver producto</button></td></tr>
+<tr><td>PH97903</td><td>9003</td><td>RAL9003 Smooth Glossy 90 - 96% PP</td><td><button class="ver-producto-btn" onclick="openModal('PH97903.png')">Ver producto</button></td></tr>
+<tr><td>EH97903</td><td>9003</td><td>RAL9003 Smooth Glossy 85% min EP</td><td><button class="ver-producto-btn" onclick="openModal('EH97903.png')">Ver producto</button></td></tr>
+<tr><td>EN97743</td><td>9005</td><td>EN97743 -- RAL9005 smooth matt 1 - 10% EP</td><td><button class="ver-producto-btn" onclick="openModal('EN97743.png')">Ver producto</button></td></tr>
+<tr><td>EH37904</td><td>3000</td><td>PH37904 -- RAL3000 smooth glossy 85% min EP</td><td><button class="ver-producto-btn" onclick="openModal('EH37904.png')">Ver producto</button></td></tr>
+<tr><td>EH57905</td><td>5005</td><td>EH57905 -- RAL5005 smooth glossy 85% min EP</td><td><button class="ver-producto-btn" onclick="openModal('EH57905.png')">Ver producto</button></td></tr>
+<tr><td>PRAL3002S8</td><td>3002</td><td>PRAL3002S8 -- RAL3002 smooth glossy 90% min PP</td><td><button class="ver-producto-btn" onclick="openModal('PRAL3002S8.png')">Ver producto</button></td></tr>
+<tr><td>ERAL5011S8</td><td>5011</td><td>RAL5011 smooth glossy 80 - 90% EP</td><td><button class="ver-producto-btn" onclick="openModal('ERAL5011S8.png')">Ver producto</button></td></tr>
+<tr><td>PH97748</td><td>9017</td><td>PH97748 -- RAL9017 smooth glossy 85% min PP</td><td><button class="ver-producto-btn" onclick="openModal('PH97748.png')">Ver producto</button></td></tr>
+<tr><td>PRAL7035S</td><td>7035</td><td>RAL7035 smooth semi glossy(gloss 50 - 70%) PP</td><td><button class="ver-producto-btn" onclick="openModal('PRAL7035S.png')">Ver producto</button></td></tr>
+<tr><td>PRAL1033SG</td><td>1033</td><td>RAL1033 smooth glossy 85% min PP</td><td><button class="ver-producto-btn" onclick="openModal('PRAL1033SG.png')">Ver producto</button></td></tr>
+<tr><td>ERAL1018SG</td><td>1018</td><td>RAL1018 smooth glossy 85% min EP</td><td><button class="ver-producto-btn" onclick="openModal('ERAL1018.png')">Ver producto</button></td></tr>
+<tr><td>ERAL1003SG</td><td>1003</td><td>RAL 1003 smooth glossy 90% min EP</td><td><button class="ver-producto-btn" onclick="openModal('ERAL1003SG.png')">Ver producto</button></td></tr>
+<tr><td>EN97751</td><td>9004</td><td>RAL9004 smooth matt (gloss 1 - 10 %)</td><td><button class="ver-producto-btn" onclick="openModal('EN97751.png')">Ver producto</button></td></tr>
+<tr><td>PPSBH-410</td><td></td><td>Silver Vein PP</td><td><button class="ver-producto-btn" onclick="openModal('PPSBH-410.JPG')">Ver producto</button></td></tr>
+<tr><td>PHT30003</td><td></td><td>Transparent Red PP</td><td><button class="ver-producto-btn" onclick="openModal('PHT30003.png')">Ver producto</button></td></tr>
+<tr><td>FH8010</td><td></td><td>FH8010 Transparent PP</td><td><button class="ver-producto-btn" onclick="openModal('FH8010.png')">Ver producto</button></td></tr>
+<tr><td>PP6019SG</td><td>6019</td><td>RAL 6019 Smooth Glossy PP</td><td><button class="ver-producto-btn" onclick="openModal('PP6019SG.png')">Ver producto</button></td></tr>
+<tr><td>PP1023SG</td><td>1023</td><td>RAL 1023 Smooth Glossy PP</td><td><button class="ver-producto-btn" onclick="openModal('PP1023SG.png')">Ver producto</button></td></tr>
+<tr><td>PNS26301</td><td></td><td>Black Sand Texture Anti 300 Degree High Heat PP</td><td><button class="ver-producto-btn" onclick="openModal('PNS26301.png')">Ver producto</button></td></tr>
+<tr><td>EP8GY410405-1</td><td></td><td>Grey Hammertone PP</td><td><button class="ver-producto-btn" onclick="openModal('EP8GY410405-1.png')">Ver producto</button></td></tr>
+<tr><td>H8AW0510</td><td></td><td>Chrome EP</td><td><button class="ver-producto-btn" onclick="openModal('H8AW0510-1.png')">Ver producto</button></td></tr>
+<tr><td>Clear 1007</td><td></td><td>Orange Transparent</td><td><button class="ver-producto-btn" onclick="openModal('Clear 1007.JPG')">Ver producto</button></td></tr>
+<tr><td>UPHG5000</td><td></td><td>Gold PP</td><td><button class="ver-producto-btn" onclick="openModal('UPHG5000.JPG')">Ver producto</button></td></tr>
+<tr><td>PPRAL9005SG</td><td></td><td>Jet Black 9005 PP</td><td><button class="ver-producto-btn" onclick="openModal('PPRAL9005SG.png')">Ver producto</button></td></tr>
+<tr><td>PJ98814</td><td></td><td>Black Texture PP</td><td><button class="ver-producto-btn" onclick="openModal('PJ98814.png')">Ver producto</button></td></tr>
+<tr><td>PPRAL3004SG</td><td>3004</td><td>RAL 3004 Smooth Glossy PP</td><td><button class="ver-producto-btn" onclick="openModal('PPRAL3004SG.png')">Ver producto</button></td></tr>
+<tr><td>PHJB08337</td><td></td><td>Hammer Texture PP</td><td><button class="ver-producto-btn" onclick="openModal('PHJB08337.png')">Ver producto</button></td></tr>
+<tr><td>PN96954</td><td></td><td>White Matt PP</td><td><button class="ver-producto-btn" onclick="openModal('PN96954.png')">Ver producto</button></td></tr>
+<tr><td>PG-OW-0408</td><td></td><td>Black Texture PP</td><td><button class="ver-producto-btn" onclick="openModal('PG-OW-0408.png')">Ver producto</button></td></tr>
+<tr><td>PH68812</td><td></td><td>Green smooth glossy 80 - 90% PP</td><td><button class="ver-producto-btn" onclick="openModal('PH68812.png')">Ver producto</button></td></tr>
+<tr><td>PHT55363</td><td></td><td>Transparent Blue PP</td><td><button class="ver-producto-btn" onclick="openModal('PHT55363.png')">Ver producto</button></td></tr>
+<tr><td>PHT25432</td><td></td><td>Transparent Black PP</td><td><button class="ver-producto-btn" onclick="openModal('PHT25432.png')">Ver producto</button></td></tr>
+<tr><td>PHT25388</td><td></td><td>Transparent Brown PP</td><td><button class="ver-producto-btn" onclick="openModal('PHT25388.png')">Ver producto</button></td></tr>
+<tr><td>PHT30004</td><td></td><td>Transparent Purple PP</td><td><button class="ver-producto-btn" onclick="openModal('PHT30004.png')">Ver producto</button></td></tr>
+<tr><td>PHT66796</td><td></td><td>Transparent Green PP</td><td><button class="ver-producto-btn" onclick="openModal('PHT66796.png')">Ver producto</button></td></tr>
+<tr><td>PHT61008</td><td></td><td>Transparent Green PP</td><td><button class="ver-producto-btn" onclick="openModal('PHT61008.png')">Ver producto</button></td></tr>
+<tr><td>PG-8S-0413</td><td>8022</td><td>RAL8022 Smooth semi matt (gloss 35 - 53%) PP</td><td><button class="ver-producto-btn" onclick="openModal('PG-8S-0413.png')">Ver producto</button></td></tr>
+<tr><td>PHBB35306</td><td></td><td>Purple Wrinkle Vein PP</td><td><button class="ver-producto-btn" onclick="openModal('PHBB35306.JPG')">Ver producto</button></td></tr>
+<tr><td>PHJG61009</td><td></td><td>Green Wrinkle Vein PP</td><td><button class="ver-producto-btn" onclick="openModal('PHJG61009.png')">Ver producto</button></td></tr>
+<tr><td>824HFC-1</td><td></td><td>Copper Wrinkle Vein PP</td><td><button class="ver-producto-btn" onclick="openModal('824HFC-1.JPG')">Ver producto</button></td></tr>
+<tr><td>PPCBH424</td><td></td><td>Copper Wrinkle Vein PP</td><td><button class="ver-producto-btn" onclick="openModal('PPCBH-424.png')">Ver producto</button></td></tr>
+<tr><td>PHJG55634</td><td></td><td>Blue Wrinkle Vein PP</td><td><button class="ver-producto-btn" onclick="openModal('PHJG55634.JPG')">Ver producto</button></td></tr>
+<tr><td>PP6018SG</td><td>6018</td><td>RAL6018 Smooth Glossy 90% min PP</td><td><button class="ver-producto-btn" onclick="openModal('PP6018SG.png')">Ver producto</button></td></tr>
+<tr><td>PRAL9016S8</td><td>9016</td><td>RAL9016 Smooth Glossy 90% min PP</td><td><button class="ver-producto-btn" onclick="openModal('PRAL9016S8.png')">Ver producto</button></td></tr>
+<tr><td>PG-3F-0462</td><td></td><td>Pink Smooth Glossy PP</td><td><button class="ver-producto-btn" onclick="openModal('PG-3F-0462.png')">Ver producto</button></td></tr>
+<tr><td>PP4006SG</td><td>4006</td><td>RAL4006 Smooth Glossy +85% PP</td><td><button class="ver-producto-btn" onclick="openModal('PP4006SG.png')">Ver producto</button></td></tr>
+<tr><td>PP4008SG</td><td>4008</td><td>RAL4008 Smooth Glossy +85% PP</td><td><button class="ver-producto-btn" onclick="openModal('PP4008SG.png')">Ver producto</button></td></tr>
+<tr><td>PP6026SG</td><td>6026</td><td>RAL6026 Smooth Glossy 90% min PP</td><td><button class="ver-producto-btn" onclick="openModal('PP6026SG.png')">Ver producto</button></td></tr>
+<tr><td>PP6029SG</td><td>6029</td><td>RAL6029 Smooth Glossy +85% PP</td><td><button class="ver-producto-btn" onclick="openModal('PP6029SG.png')">Ver producto</button></td></tr>
+<tr><td>PG-1B-0459</td><td></td><td>Arena PP</td><td><button class="ver-producto-btn" onclick="openModal('PG-1B-0459.png')">Ver producto</button></td></tr>
+<tr><td>PG-5B-0472</td><td></td><td>Blue Smooth Glossy PP</td><td><button class="ver-producto-btn" onclick="openModal('PG-5B-0472.png')">Ver producto</button></td></tr>
+<tr><td>PG-1T-0464-B</td><td></td><td>Chrome Gold PP</td><td><button class="ver-producto-btn" onclick="openModal('PG-1T-0464-B.png')">Ver producto</button></td></tr>
+<tr><td>PP7035SG</td><td>7035</td><td>RAL7035 Smooth Glossy +85% PP</td><td><button class="ver-producto-btn" onclick="openModal('PP7035SG.png')">Ver producto</button></td></tr>
+</tbody>
+      </table>
+    </div>
+    <p style="font-size: 0.85em; color: #666; margin-top: 10px;">
+      Los productos mostrados actualmente se encuentran en stock. Esta lista no es limitativa; contamos con la capacidad de desarrollar productos personalizados según sus necesidades.
+    </p>
+  </section>
 
   <section class="section" id="catalogo">
     <h2>Catálogo</h2>
@@ -259,19 +311,29 @@
       </div>
     </div>
     <div style="margin-top: 30px; text-align: center;">
-  <a href="https://www.fhpowdercoating.com/download.html" target="_blank" 
-     style="display: inline-block; margin: 10px; padding: 12px 24px; background-color: #003366; color: white; text-decoration: none; border-radius: 6px;">
-    Sitio de Productos JINHU
-  </a>
-  <a href="https://www.chinapowdercoating.com/author/admin/" target="_blank" 
-     style="display: inline-block; margin: 10px; padding: 12px 24px; background-color: #003366; color: white; text-decoration: none; border-radius: 6px;">
-    Sección Técnica JINHU
-  </a>
-</div>
+      <a href="https://www.fhpowdercoating.com/download.html" target="_blank" 
+         style="display: inline-block; margin: 10px; padding: 12px 24px; background-color: #003366; color: white; text-decoration: none; border-radius: 6px;">
+        Sitio de Productos JINHU
+      </a>
+      <a href="https://www.chinapowdercoating.com/author/admin/" target="_blank" 
+         style="display: inline-block; margin: 10px; padding: 12px 24px; background-color: #003366; color: white; text-decoration: none; border-radius: 6px;">
+        Sección Técnica JINHU
+      </a>
+    </div>
   </section>
+
+
+  <div id="imageModal" class="product-image-modal">
+    <div class="product-image-content">
+      <span class="close-modal" onclick="closeModal()">&times;</span>
+      <img id="modalImage" src="" alt="Producto">
+      <p>El color mostrado es una aproximación y puede cambiar dependiendo de la iluminación, acabado y aplicación.</p>
+    </div>
+  </div>
 
   <footer>
     &copy; 2025 BOON BTM. Todos los derechos reservados.
   </footer>
 </body>
 </html>
+
